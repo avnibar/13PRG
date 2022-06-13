@@ -14,6 +14,44 @@ questionList = random.sample(questionList, len(questionList))
 def answerPhase():
     root.destroy()
     
+    global questionLCV
+    questionLCV = 0
+    global skipCounter
+    skipCounter = 0
+    global totalQuestions
+    totalQuestions = 12
+
+    while questionLCV < totalQuestions:
+        global qroot
+        qroot = Tk()
+        qroot.config(bg="#ffd3a6")
+        qroot.geometry("1000x720")
+        qroot.title("Question "+str(questionLCV+1-skipCounter))
+        pageFont = Font(family = "Gill Sans MT",weight="bold",size=18)
+
+
+        qNumber = Label(qroot, text="QUESTION "+str(questionLCV+1-skipCounter)+".", font=pageFont, fg="white", bg="#fd5050",padx=20,pady=20)
+        qNumber.place(x=15,y=15)
+
+        questionText = Label(qroot, text=questionList[questionLCV][0], font=pageFont, fg="white", bg="#fd5050", padx=20, pady=20)
+        questionText.place(x=500, y=175, anchor="center")
+
+        if skipCounter < 3:
+            skipButton = Button(qroot, text="SKIP", font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10, command=skipQuestion)
+            skipButton.place(x=815, y=620)
+        
+        exitButton = Button(qroot, text="EXIT", font=pageFont, bg="#fd5050", fg="#FFFFFF", command=exit, borderwidth=1, padx=40, pady=10)
+        exitButton.place(x=30, y=620)
+        
+        qroot.mainloop()
+        questionLCV += 1
+
+def skipQuestion():
+    global skipCounter
+    skipCounter += 1
+    global totalQuestions
+    totalQuestions += 1
+    qroot.destroy()
 
 def titleScreen():
     global root
