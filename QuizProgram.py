@@ -29,7 +29,6 @@ def answerPhase():
         qroot.title("Question "+str(questionLCV+1-skipCounter))
         pageFont = Font(family = "Gill Sans MT",weight="bold",size=18)
 
-
         qNumber = Label(qroot, text="QUESTION "+str(questionLCV+1-skipCounter)+".", font=pageFont, fg="white", bg="#fd5050",padx=20,pady=20)
         qNumber.place(x=15,y=15)
 
@@ -43,6 +42,36 @@ def answerPhase():
         exitButton = Button(qroot, text="EXIT", font=pageFont, bg="#fd5050", fg="#FFFFFF", command=exit, borderwidth=1, padx=40, pady=10)
         exitButton.place(x=30, y=620)
         
+        temp = []
+        temp.append(questionList[questionLCV][1])
+        temp.append(questionList[questionLCV][2])
+        
+        if len(questionList[questionLCV]) == 5:
+            temp.append(questionList[questionLCV][3])
+            temp.append(questionList[questionLCV][4])
+            temp = random.sample(temp, len(temp))
+
+            answerOne = Button(qroot, text=temp[0],font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10)
+            answerOne.place(x=315, y=350, anchor="center")
+
+            answerTwo = Button(qroot, text=temp[1],font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10)
+            answerTwo.place(x=675, y=350, anchor="center")
+
+            answerThree = Button(qroot, text=temp[2],font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10)
+            answerThree.place(x=315, y=450, anchor="center")
+
+            answerFour = Button(qroot, text=temp[3],font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10)
+            answerFour.place(x=675, y=450, anchor="center")
+        else:
+            temp = random.sample(temp, len(temp))
+
+            answerOne = Button(qroot, text=temp[0],font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10)
+            answerOne.place(x=315, y=400, anchor="center")
+
+            answerTwo = Button(qroot, text=temp[1],font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=40, pady=10)
+            answerTwo.place(x=675, y=400, anchor="center")
+        
+
         qroot.mainloop()
         questionLCV += 1
 
@@ -71,9 +100,6 @@ def titleScreen():
     playButton.place(x=100, y=400)
     exitButton = Button(root, text="EXIT", font=pageFont, bg="#fd5050", fg="#FFFFFF", command=exit, borderwidth=1, padx=40, pady=10)
     exitButton.place(x=400, y=400)
-
-    
-
 
     root.mainloop()
 
