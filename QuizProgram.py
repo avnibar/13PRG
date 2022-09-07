@@ -1,9 +1,10 @@
-from email import message
+
+#Importing Python tools and systems that allow for the GUI and random elements of the code
 import random
-from socket import getprotobyname
 from tkinter import *
 from tkinter.font import Font
 
+#Function to set up the quiz's questions, answers, final grades and messages, score requirements, and initialising the score to 0
 def initialising():
     global questionList
     questionList = [["Astrology is a pseudoscience.","True","False"],["Why does the moon have a bigger effect on the tides than the sun?","It is closer to Earth","It is bigger","It is smaller","It is further away from Earth"],["What is a solar eclipse?","When the sun is behind the moon","When Earth is in between the moon and sun","When the moon is behind the sun","When the sun is below Earth"],["What is a lunar eclipse?","When Earth is in between the moon and sun","When the sun is behind the moon","When the moon is behind the sun","When the sun is below Earth"],["How long does it take for the moon to complete 1 revolution around the Earth?","29.5 Days","30 Days","24 Hours","28 Days"],["How many km is 1 Astronomical Unit (A.U.)?","150,000,000 km","150,000 km","100,000,000 km","100,000 km"],["When the moon phase is waning it means it is getting bigger.","False","True"],["The New Moon is a moon phase where the moon is completely dark.","True","False"],["The moon produces its own light.","False","True"],["How many high tides are there on average per 24 hour day?","2","1","3","4"],["The area of partial shadow of the Earth is called?","Penumbra","Umbra","Terrumbra","Sombra"],["The area of complete shadow of the Earth is called?","Umbra","Penumbra","Terrumbra","Sombra"],["What causes the Earth's seasons?","The Earth’s tilt","The distance from the sun to the Earth","The Earth’s speed around the sun","The Earth’s distance from the moon"],["Astronomy is a pseudoscience.","False","True"],["How many phases of the moon are there?","8","6","10","12"],["The term ‘Gibbous’ is used to describe the moon when it is…","Almost full","Half full","Full","Almost empty"],["The sun’s core fuses Hydrogen into _____ when releasing energy.","Helium","Nitrogen","Oxygen","Neon"],["How many astronomical units away is the sun from the Earth?","1","2","5","8"],["How many planets do we have in our solar system?","8","6","7","9"],["Pluto is not a planet.","True","False"]]
@@ -19,6 +20,7 @@ def initialising():
 
     titleScreen()
 
+#Function that calculates the user's final grade and displays the quiz's final score screen
 def calcGrade():
     
     if score >= scoreRequire[0] and score < scoreRequire[1]:
@@ -53,10 +55,12 @@ def calcGrade():
     playAgain = Button(groot, text="PLAY AGAIN", font=playAgainFont, bg="#fd5050", fg="#FFFFFF", borderwidth=1, padx=4, pady=13, command=restart)
     playAgain.place(x=20, y=460)
 
+#Function for the "Play Again" button which restarts the program
 def restart():
     groot.destroy()
     initialising()
 
+#Function which creates each question page
 def answerPhase():
     root.destroy()
     
@@ -135,6 +139,7 @@ def answerPhase():
         questionLCV += 1
     calcGrade()
 
+#Function for the "Skip" button which skips the question
 def skipQuestion():
     global skipCounter
     skipCounter += 1
@@ -142,6 +147,7 @@ def skipQuestion():
     totalQuestions += 1
     qroot.destroy()
 
+#Function that checks if the answer chosen is correct and increments the user's score accordingly
 def answerClick(ansNum):
     pageFontAltTwo = Font(family = "Gill Sans MT",weight="bold",size=20)
     pageFont = Font(family = "Gill Sans MT",weight="bold",size=18)
@@ -168,10 +174,11 @@ def answerClick(ansNum):
     nextButton = Button(qroot, text="NEXT", font=pageFont, bg="#fd5050", fg="white", borderwidth=1, padx=32, pady=10, command=next)
     nextButton.place(x=815, y=620)
 
+#Function that goes to the next question
 def next():
     qroot.destroy()
 
-
+#Funciton that creates the first title screen
 def titleScreen():
     global root
     root = Tk()
@@ -196,4 +203,5 @@ def titleScreen():
 
     root.mainloop()
 
+#Calls the initialising function which starts up the program
 initialising()
