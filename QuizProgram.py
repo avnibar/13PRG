@@ -17,6 +17,10 @@ def initialising():
     global score
     score = 0
     questionList = random.sample(questionList, len(questionList))
+    
+    #Total number of questions can be changed based on number of skips used during execution therefore this is not stored as constant
+    global totalQuestions
+    totalQuestions = 12
 
     titleScreen()
 
@@ -68,8 +72,7 @@ def answerPhase():
     questionLCV = 0
     global skipCounter
     skipCounter = 0
-    global totalQuestions
-    totalQuestions = 12
+    
     global answerOne
     global answerTwo
     global answerThree
